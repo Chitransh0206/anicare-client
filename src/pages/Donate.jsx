@@ -21,23 +21,19 @@ function Donate() {
       setMessage('Please fill all fields')
       return
     }
-
     setLoading(true)
     const loaded = await loadRazorpay()
-
     if (!loaded) {
-      setMessage('Razorpay failed to load. Check internet connection.')
+      setMessage('Razorpay failed to load.')
       setLoading(false)
       return
     }
-
     try {
       const orderRes = await axios.post('https://anicare-server.onrender.com/api/donations/create-order', {
         amount: parseFloat(form.amount)
       })
-
       const options = {
-        key: 'rzp_test_T0BS61WTswH6GU',
+        key: 'YOUR_RAZORPAY_KEY_ID',
         amount: orderRes.data.amount,
         currency: 'INR',
         name: 'ANIcare',
@@ -45,7 +41,7 @@ function Donate() {
         order_id: orderRes.data.id,
         handler: async (response) => {
           try {
-            const verifyRes = await axios.post('https://anicare-server.onrender.com/api/donations/verify', {
+            await axios.post('https://anicare-server.onrender.com/api/donations/verify', {
               ...response,
               name: form.name,
               email: form.email,
@@ -57,13 +53,9 @@ function Donate() {
             setMessage('Payment verification failed.')
           }
         },
-        prefill: {
-          name: form.name,
-          email: form.email
-        },
+        prefill: { name: form.name, email: form.email },
         theme: { color: '#15803d' }
       }
-
       const rzp = new window.Razorpay(options)
       rzp.open()
     } catch (err) {
@@ -74,7 +66,7 @@ function Donate() {
 
   return (
     <div className="min-h-screen bg-green-50 py-16 px-4">
-      <div className="bg-white p-10 rounded-xl shadow-md w-full max-w-lg mx-auto">
+      <div className="bg-white p-8 md:p-10 rounded-xl shadow-md w-full max-w-lg mx-auto">
         <h2 className="text-3xl font-bold text-green-700 mb-2 text-center">Donate to ANIcare</h2>
         <p className="text-center text-gray-500 mb-6">Your donation helps rescue and treat animals in need</p>
         {message && <p className="text-center text-green-600 mb-4 font-semibold">{message}</p>}
@@ -82,9 +74,9 @@ function Donate() {
           <input className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500" placeholder="Your Name" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
           <input className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500" placeholder="Email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
           <input type="number" className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500" placeholder="Amount (₹)" value={form.amount} onChange={e => setForm({...form, amount: e.target.value})} />
-          <div className="flex gap-3">
+          <div className="grid grid-cols-4 gap-2">
             {[100, 500, 1000, 2000].map(amt => (
-              <button key={amt} onClick={() => setForm({...form, amount: amt})} className="flex-1 border-2 border-green-600 text-green-700 py-2 rounded-lg font-semibold hover:bg-green-50">₹{amt}</button>
+              <button key={amt} onClick={() => setForm({...form, amount: amt})} className="border-2 border-green-600 text-green-700 py-2 rounded-lg font-semibold hover:bg-green-50 text-sm">₹{amt}</button>
             ))}
           </div>
           <button onClick={handleDonate} disabled={loading} className="bg-green-700 text-white py-3 rounded-lg font-semibold hover:bg-green-800 disabled:opacity-50">

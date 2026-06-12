@@ -11,13 +11,13 @@ function VetDirectory() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-green-50 py-16 px-8">
+    <div className="min-h-screen bg-green-50 py-16 px-6">
       <h2 className="text-3xl font-bold text-green-800 mb-2 text-center">Vet Directory</h2>
       <p className="text-center text-gray-500 mb-10">Find verified vets near you</p>
       {vets.length === 0 ? (
         <p className="text-center text-gray-400 text-lg">No vets listed yet.</p>
       ) : (
-        <div className="grid grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {vets.map(vet => (
             <div key={vet.id} className="bg-white p-6 rounded-xl shadow-sm">
               <h3 className="text-xl font-semibold text-green-700">{vet.name}</h3>

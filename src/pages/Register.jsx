@@ -17,8 +17,8 @@ function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-green-50 flex items-center justify-center">
-      <div className="bg-white p-10 rounded-xl shadow-md w-full max-w-md">
+    <div className="min-h-screen bg-green-50 flex items-center justify-center px-4">
+      <div className="bg-white p-8 md:p-10 rounded-xl shadow-md w-full max-w-md">
         <h2 className="text-3xl font-bold text-green-700 mb-6 text-center">Register</h2>
         {message && <p className="text-center text-green-600 mb-4">{message}</p>}
         <div className="flex flex-col gap-4">

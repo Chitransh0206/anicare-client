@@ -18,7 +18,7 @@ function VolunteerRegister() {
 
   return (
     <div className="min-h-screen bg-green-50 py-16 px-4">
-      <div className="bg-white p-10 rounded-xl shadow-md w-full max-w-lg mx-auto">
+      <div className="bg-white p-8 md:p-10 rounded-xl shadow-md w-full max-w-lg mx-auto">
         <h2 className="text-3xl font-bold text-green-700 mb-2 text-center">Become a Volunteer</h2>
         <p className="text-center text-gray-500 mb-6">Join our network and help animals in your city</p>
         {message && <p className="text-center text-green-600 mb-4">{message}</p>}
