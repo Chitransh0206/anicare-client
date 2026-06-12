@@ -5,7 +5,7 @@ function VetDirectory() {
   const [vets, setVets] = useState([])
 
   useEffect(() => {
-    axios.get('https://anicare-server-production.up.railway.app/api/vets')
+    axios.get('https://anicare-server.onrender.com/api/vets')
       .then(res => setVets(res.data))
       .catch(err => console.log(err))
   }, [])

@@ -8,7 +8,7 @@ function VolunteerRegister() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('https://anicare-server-production.up.railway.app/api/volunteers', form)
+      await axios.post('https://anicare-server.onrender.com/api/volunteers', form)
       setMessage('Volunteer registered successfully! We will contact you soon.')
       setForm({ name: '', email: '', phone: '', city: '', skills: '' })
     } catch (err) {

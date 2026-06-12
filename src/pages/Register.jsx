@@ -9,7 +9,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('https://anicare-server-production.up.railway.app/api/auth/register', form)
+      await axios.post('https://anicare-server.onrender.com/api/auth/register', form)
       setMessage('Registered successfully! Please login.')
     } catch (err) {
       setMessage('Email already exists')
