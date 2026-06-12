@@ -32,7 +32,7 @@ function Donate() {
     }
 
     try {
-      const orderRes = await axios.post('http://localhost:5000/api/donations/create-order', {
+      const orderRes = await axios.post('https://anicare-server-production.up.railway.app/api/donations/create-order', {
         amount: parseFloat(form.amount)
       })
 
@@ -45,7 +45,7 @@ function Donate() {
         order_id: orderRes.data.id,
         handler: async (response) => {
           try {
-            const verifyRes = await axios.post('http://localhost:5000/api/donations/verify', {
+            const verifyRes = await axios.post('https://anicare-server-production.up.railway.app/api/donations/verify', {
               ...response,
               name: form.name,
               email: form.email,

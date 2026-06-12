@@ -8,7 +8,7 @@ function RescueRequest() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('http://localhost:5000/api/rescues', form)
+      await axios.post('https://anicare-server-production.up.railway.app/api/rescues', form)
       setMessage('Rescue request submitted successfully!')
       setForm({ animalType: '', description: '', location: '', imageUrl: '' })
     } catch (err) {
