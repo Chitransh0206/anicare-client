@@ -33,7 +33,7 @@ function Donate() {
         amount: parseFloat(form.amount)
       })
       const options = {
-        key: 'YOUR_RAZORPAY_KEY_ID',
+        key: 'rzp_test_T0BS61WTswH6GU',
         amount: orderRes.data.amount,
         currency: 'INR',
         name: 'ANIcare',
