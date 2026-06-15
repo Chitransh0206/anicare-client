@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import RescueFeed from './pages/RescueFeed'
 
 function ScrollToTop() {
   const { pathname } = window.location
@@ -33,6 +34,7 @@ function App() {
             <Route path="/vets" element={<VetDirectory />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/feed" element={<RescueFeed />} />
           </Routes>
         </main>
         <Footer />
