@@ -163,9 +163,21 @@ function VetDirectory() {
                 </div>
 
                 {/* Actions */}
+                {/* Actions */}
                 <div className="mt-4 flex gap-3">
                   
                     href={`tel:${vet.phone}`}
+                    className="flex-1 bg-green-700 text-white py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-800 transition"
+                  >
+                    📞 Call Now
+                  </a>
+                  
+                    href={`mailto:${vet.email}`}
+                    className="flex-1 border-2 border-green-700 text-green-700 py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-50 transition"
+                  >
+                    ✉️ Email
+                  </a>
+                </div>
                     className="flex-1 bg-green-700 text-white py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-800 transition"
                   >
                     📞 Call Now
