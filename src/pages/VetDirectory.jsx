@@ -1,15 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import API from '../services/api'
-
-const specializationEmojis = {
-  'General': '🩺',
-  'Surgery': '🔬',
-  'Dermatology': '🐾',
-  'Dentistry': '🦷',
-  'Orthopedics': '🦴',
-  'Emergency': '🚨',
-}
 
 function VetDirectory() {
   const [vets, setVets] = useState([])
@@ -36,8 +26,6 @@ function VetDirectory() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-
-      {/* Header */}
       <div className="bg-green-700 text-white py-14 px-6 text-center">
         <p className="text-green-300 font-semibold mb-2">Verified Professionals</p>
         <h1 className="text-3xl md:text-5xl font-bold mb-3">Find a Vet Near You</h1>
@@ -46,12 +34,11 @@ function VetDirectory() {
         </p>
       </div>
 
-      {/* Search + Filter */}
       <div className="bg-white shadow-sm py-6 px-6 sticky top-16 z-40">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-4">
           <input
             className="flex-1 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-green-500 text-sm"
-            placeholder="🔍 Search by name, city, or specialization..."
+            placeholder="Search by name, city, or specialization..."
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
@@ -66,17 +53,14 @@ function VetDirectory() {
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                {f === 'all' ? 'All' : f === 'available' ? '🟢 Available' : '🔴 Unavailable'}
+                {f === 'all' ? 'All' : f === 'available' ? 'Available' : 'Unavailable'}
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Content */}
       <div className="max-w-5xl mx-auto px-6 py-10">
-
-        {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-xl p-4 text-center shadow-sm">
             <h3 className="text-2xl font-bold text-green-700">{vets.length}</h3>
@@ -92,7 +76,6 @@ function VetDirectory() {
           </div>
         </div>
 
-        {/* Loading */}
         {loading && (
           <div className="text-center py-20">
             <div className="text-5xl mb-4">🐾</div>
@@ -100,7 +83,6 @@ function VetDirectory() {
           </div>
         )}
 
-        {/* Empty */}
         {!loading && filtered.length === 0 && (
           <div className="text-center py-20">
             <div className="text-5xl mb-4">🔍</div>
@@ -108,13 +90,11 @@ function VetDirectory() {
           </div>
         )}
 
-        {/* Vet Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filtered.map(vet => (
             <div key={vet.id} className="bg-white rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden border border-gray-100">
               <div className="p-6">
                 <div className="flex items-start gap-4">
-                  {/* Avatar */}
                   <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
                     {vet.image ? (
                       <img src={vet.image} alt={vet.name} className="w-full h-full object-cover" />
@@ -122,25 +102,20 @@ function VetDirectory() {
                       <span className="text-2xl">👨‍⚕️</span>
                     )}
                   </div>
-
-                  {/* Info */}
                   <div className="flex-1">
                     <div className="flex justify-between items-start">
                       <h3 className="font-bold text-gray-800 text-lg">Dr. {vet.name}</h3>
                       <span className={`px-2 py-1 rounded-full text-xs font-semibold ${vet.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
-                        {vet.available ? '🟢 Available' : '🔴 Unavailable'}
+                        {vet.available ? 'Available' : 'Unavailable'}
                       </span>
                     </div>
                     {vet.specialization && (
-                      <p className="text-green-600 text-sm font-medium mt-0.5">
-                        {specializationEmojis[vet.specialization] || '🩺'} {vet.specialization}
-                      </p>
+                      <p className="text-green-600 text-sm font-medium mt-0.5">🩺 {vet.specialization}</p>
                     )}
                     <p className="text-gray-500 text-sm mt-1">📍 {vet.city}</p>
                   </div>
                 </div>
 
-                {/* Details */}
                 <div className="mt-4 grid grid-cols-2 gap-3">
                   {vet.experience && (
                     <div className="bg-gray-50 rounded-xl px-3 py-2">
@@ -162,30 +137,11 @@ function VetDirectory() {
                   )}
                 </div>
 
-                {/* Actions */}
-                {/* Actions */}
                 <div className="mt-4 flex gap-3">
-                  
-                    href={`tel:${vet.phone}`}
-                    className="flex-1 bg-green-700 text-white py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-800 transition"
-                  >
+                  <a href={`tel:${vet.phone}`} className="flex-1 bg-green-700 text-white py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-800 transition">
                     📞 Call Now
                   </a>
-                  
-                    href={`mailto:${vet.email}`}
-                    className="flex-1 border-2 border-green-700 text-green-700 py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-50 transition"
-                  >
-                    ✉️ Email
-                  </a>
-                </div>
-                    className="flex-1 bg-green-700 text-white py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-800 transition"
-                  >
-                    📞 Call Now
-                  </a>
-                  
-                    href={`mailto:${vet.email}`}
-                    className="flex-1 border-2 border-green-700 text-green-700 py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-50 transition"
-                  >
+                  <a href={`mailto:${vet.email}`} className="flex-1 border-2 border-green-700 text-green-700 py-2.5 rounded-xl text-sm font-semibold text-center hover:bg-green-50 transition">
                     ✉️ Email
                   </a>
                 </div>
@@ -193,16 +149,6 @@ function VetDirectory() {
             </div>
           ))}
         </div>
-
-        {/* Empty State CTA */}
-        {!loading && vets.length === 0 && (
-          <div className="text-center mt-10 p-8 bg-white rounded-2xl border border-dashed border-green-300">
-            <p className="text-4xl mb-3">👨‍⚕️</p>
-            <h3 className="text-xl font-bold text-gray-700 mb-2">No Vets Listed Yet</h3>
-            <p className="text-gray-500 mb-4">Are you a vet? Join our network and help animals in need.</p>
-          </div>
-        )}
-
       </div>
     </div>
   )
