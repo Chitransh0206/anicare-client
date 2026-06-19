@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import API from '../services/api'
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import API from '../services/api'
 
@@ -37,15 +35,12 @@ function RescueFeed() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-6">
       <div className="max-w-5xl mx-auto">
-        
-        {/* Header */}
         <div className="text-center mb-10">
           <p className="text-green-600 font-semibold mb-1">Live Updates</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Rescue Feed</h2>
           <p className="text-gray-500 mt-2">All active and recent animal rescue cases</p>
         </div>
 
-        {/* Filter Buttons */}
         <div className="flex gap-3 mb-8 flex-wrap justify-center">
           {['all', 'pending', 'in-progress', 'resolved'].map(f => (
             <button
@@ -62,7 +57,6 @@ function RescueFeed() {
           ))}
         </div>
 
-        {/* Loading */}
         {loading && (
           <div className="text-center py-20">
             <div className="text-5xl mb-4">🐾</div>
@@ -70,7 +64,6 @@ function RescueFeed() {
           </div>
         )}
 
-        {/* Empty */}
         {!loading && filtered.length === 0 && (
           <div className="text-center py-20">
             <div className="text-5xl mb-4">🔍</div>
@@ -78,7 +71,6 @@ function RescueFeed() {
           </div>
         )}
 
-        {/* Rescue Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filtered.map(rescue => (
             <Link to={`/rescue/${rescue.id}`} key={rescue.id} className="bg-white rounded-2xl shadow-sm hover:shadow-md transition p-6 border border-gray-100 block">
@@ -107,7 +99,6 @@ function RescueFeed() {
             </Link>
           ))}
         </div>
-
       </div>
     </div>
   )
