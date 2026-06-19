@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import API from '../services/api'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import API from '../services/api'
 
 const statusColors = {
   pending: 'bg-red-100 text-red-600',
@@ -78,7 +81,7 @@ function RescueFeed() {
         {/* Rescue Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filtered.map(rescue => (
-            <div key={rescue.id} className="bg-white rounded-2xl shadow-sm hover:shadow-md transition p-6 border border-gray-100">
+            <Link to={`/rescue/${rescue.id}`} key={rescue.id} className="bg-white rounded-2xl shadow-sm hover:shadow-md transition p-6 border border-gray-100 block">
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">{animalEmojis[rescue.animalType] || '🐾'}</span>
@@ -101,7 +104,7 @@ function RescueFeed() {
                 </p>
                 <span className="text-green-600 text-xs font-semibold">Case #{rescue.id}</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
