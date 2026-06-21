@@ -23,6 +23,19 @@ function RescueDetail() {
   const [rescue, setRescue] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+const [updating, setUpdating] = useState(false)
+const user = JSON.parse(localStorage.getItem('user') || 'null')
+
+const updateStatus = async (newStatus) => {
+  setUpdating(true)
+  try {
+    await API.put(`/api/rescues/${id}`, { status: newStatus })
+    setRescue({ ...rescue, status: newStatus })
+  } catch (err) {
+    console.log(err)
+  }
+  setUpdating(false)
+}
 
   useEffect(() => {
     API.get(`/api/rescues/${id}`)
@@ -146,6 +159,37 @@ function RescueDetail() {
             </Link>
           </div>
         </div>
+
+        {/* Status Update - only for logged in users */}
+{user && (
+  <div className="bg-white rounded-2xl shadow-sm p-6 mb-6 border border-gray-100">
+    <h2 className="font-bold text-gray-800 text-lg mb-4">Update Status</h2>
+    <div className="flex gap-3 flex-wrap">
+      <button
+        onClick={() => updateStatus('pending')}
+        disabled={updating || rescue.status === 'pending'}
+        className="px-5 py-2 rounded-xl text-sm font-semibold bg-red-100 text-red-600 hover:bg-red-200 disabled:opacity-50 transition"
+      >
+        🚨 Pending
+      </button>
+      <button
+        onClick={() => updateStatus('in-progress')}
+        disabled={updating || rescue.status === 'in-progress'}
+        className="px-5 py-2 rounded-xl text-sm font-semibold bg-yellow-100 text-yellow-600 hover:bg-yellow-200 disabled:opacity-50 transition"
+      >
+        🔄 In Progress
+      </button>
+      <button
+        onClick={() => updateStatus('resolved')}
+        disabled={updating || rescue.status === 'resolved'}
+        className="px-5 py-2 rounded-xl text-sm font-semibold bg-green-100 text-green-700 hover:bg-green-200 disabled:opacity-50 transition"
+      >
+        ✅ Resolved
+      </button>
+    </div>
+  </div>
+)}
+
 
         {/* Donate CTA */}
         <div className="bg-green-700 text-white rounded-2xl p-6 text-center">
