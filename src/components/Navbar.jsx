@@ -31,7 +31,7 @@ function Navbar() {
           <Link to="/feed" className="hover:text-green-200 text-sm font-medium">Rescue Feed</Link>
           {user ? (
             <div className="flex items-center gap-4">
-              <span className="text-green-200 text-sm">👋 {user.name}</span>
+              <Link to="/dashboard" className="text-green-200 text-sm hover:text-white">👋 {user.name}</Link>
               <button
                 onClick={handleLogout}
                 className="bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold transition"
@@ -60,7 +60,7 @@ function Navbar() {
           <Link to="/feed" className="hover:text-green-200 text-sm font-medium">Rescue Feed</Link>
           {user ? (
             <>
-              <span className="text-green-200 text-sm">👋 {user.name}</span>
+              <Link to="/dashboard" className="text-green-200 text-sm hover:text-white">👋 {user.name}</Link>
               <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold text-left">
                 Logout
               </button>

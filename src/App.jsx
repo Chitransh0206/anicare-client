@@ -11,6 +11,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import RescueFeed from './pages/RescueFeed'
 import RescueDetail from './pages/RescueDetail'
+import VolunteerDashboard from './pages/VolunteerDashboard'
 
 function ScrollToTop() {
   const { pathname } = window.location
@@ -37,6 +38,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/feed" element={<RescueFeed />} />
             <Route path="/rescue/:id" element={<RescueDetail />} />
+            <Route path="/dashboard" element={<VolunteerDashboard />} />
           </Routes>
         </main>
         <Footer />
