@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import RescueFeed from './pages/RescueFeed'
 import RescueDetail from './pages/RescueDetail'
 import VolunteerDashboard from './pages/VolunteerDashboard'
+import AdminDashboard from './pages/AdminDashboard'
 
 function ScrollToTop() {
   const { pathname } = window.location
@@ -39,6 +40,7 @@ function App() {
             <Route path="/feed" element={<RescueFeed />} />
             <Route path="/rescue/:id" element={<RescueDetail />} />
             <Route path="/dashboard" element={<VolunteerDashboard />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>
         <Footer />
