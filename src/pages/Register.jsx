@@ -59,7 +59,7 @@ function Register() {
               type="password"
               className="border border-gray-300 rounded-xl px-4 py-3 w-full focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
               placeholder="••••••••"
-              onChange={e => setForm({...form, name: e.target.value})}
+              onChange={e => setForm({...form, password: e.target.value})}
             />
           </div>
           <button
